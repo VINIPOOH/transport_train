@@ -1,9 +1,20 @@
 package model;
 
 public class Carriage {
-    private final int WEIGHT;
+    private final int weight;
 
-    public Carriage(int WEIGHT) {
-        this.WEIGHT = WEIGHT;
+    public int getWeight() {
+        return weight;
+    }
+
+    public Carriage(int weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Carriage{" +
+                "WEIGHT=" + weight +
+                '}';
     }
 }
