@@ -17,19 +17,19 @@ public class CarriageManager {
         this.train = train;
     }
 
-    public void sortTrainByComfortType(){
+    public void sortTrainByComfortType() {
         train.sortTrainByComfortType();
     }
 
-    public Carriage[] getWagonsWithAmountPassengersInRange(int flor, int ceiling){
+    public Carriage[] getWagonsWithAmountPassengersInRange(int flor, int ceiling) {
         return train.getPassengerCarriageWithAmountPassengerInRange(flor, ceiling);
     }
 
-    public int countAmountPassengers(){
+    public int countAmountPassengers() {
         return train.countAmountPassengers();
     }
 
-    public int WeightTrain(){
+    public int WeightTrain() {
         return train.WeightTrain();
     }
 }

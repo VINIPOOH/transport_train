@@ -3,10 +3,11 @@ package controller;
 
 import model.Carriage;
 import model.CarriageManager;
-
 import model.Train;
 import view.ConsoleView;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,15 @@ public class ConsoleController implements TextConstant {
     private CarriageManager manager;
     private ConsoleView view;
 
+    // Resource Bundle Installation's
+    static String MESSAGES_BUNDLE_NAME = "messages";
+    public static final ResourceBundle messages =
+            ResourceBundle.getBundle(
+                    MESSAGES_BUNDLE_NAME,
+                    new Locale("ua", "UA"));  // Ukrainian
+    static String REGULAR_TEMPLATES = "regular_templates";
+    //new Locale("en"));        // English
+
     public ConsoleController(CarriageManager manager, ConsoleView view) {
         this.manager = manager;
         this.view = view;
@@ -23,59 +33,64 @@ public class ConsoleController implements TextConstant {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        showInfoAboutTrains();
+        view.printMessage(messages.getString(TRAIN));
+        showInfoAboutTrain();
+        view.printMessage(messages.getString(SORT_CARRIAGE));
+        sortAndShowTrain();
+        view.printMessage(messages.getString(COUNT_AMOUNT_PASSENGERS));
+        countAndPrintAmountPassengers();
+        view.printMessage(messages.getString(COUNT_TRAIN_WEIGHT));
+        showWeightTrain();
+        view.printMessage(messages.getString(FIND_CARRIAGE_WITH_MAX_AMOUNT_PASSENGERS_IN_RANGE));
+        getAndHandleWagonsWithAmountPassengersInRange(scanner);
 
     }
 
-    private void showInfoAboutTrains (){
-                Train train = manager.getTrain();
-        StringBuilder trainInfoToPrint=new StringBuilder();
-        trainInfoToPrint.append(TRAIN);
+    private void showInfoAboutTrain() {
+        Train train = manager.getTrain();
+        StringBuilder trainInfoToPrint = new StringBuilder();
+
         trainInfoToPrint.append(train.getTrainNumber());
         trainInfoToPrint.append(" ");
-        for (Carriage carriage: train.getCarriages()){
+        for (Carriage carriage : train.getCarriages()) {
             trainInfoToPrint.append(carriage.toString());
             trainInfoToPrint.append(" ");
         }
+        view.printMessage(trainInfoToPrint.toString());
     }
 
-    private void waitCommand(Scanner scanner){
-        int userInput = getNumberFromUser(scanner);
-        switch (userInput){
-            case 1:
-                break;
-
-        }
-    }
-
-
-    private void sortAndShowTrain(){
+    private void sortAndShowTrain() {
         manager.sortTrainByComfortType();
-        showInfoAboutTrains();
+        showInfoAboutTrain();
     }
-    private void getAndHandleWagonsWithAmountPassengersInRange(Scanner scanner){
-        view.printMessage(INPUT_FLOR_PASSENGER_RANGE);
-        int flor =getNumberFromUser(scanner);
-        view.printMessage(INPUT_CEILING_PASSENGER_RANGE);
-        int ceiling=getNumberFromUser(scanner);
+
+    private void getAndHandleWagonsWithAmountPassengersInRange(Scanner scanner) {
+        view.printMessage(messages.getString(INPUT_FLOR_PASSENGER_RANGE));
+        int flor = getNumberFromUser(scanner);
+        view.printMessage(messages.getString(INPUT_CEILING_PASSENGER_RANGE));
+        int ceiling = getNumberFromUser(scanner);
         view.printMessage(manager.getWagonsWithAmountPassengersInRange(flor, ceiling).toString());
     }
-    private int getNumberFromUser(Scanner scanner){
+
+    private int getNumberFromUser(Scanner scanner) {
         int value;
-        while (true){
-            if(scanner.hasNextInt()){
-                value=scanner.nextInt();
+        while (true) {
+            if (scanner.hasNextInt()) {
+                value = scanner.nextInt();
+                value = Math.abs(value);
                 scanner.reset();
                 return value;
             }
+            view.printWrongStringInput();
         }
     }
 
-    private void countAndPrintAmountPassengers(){
+    private void countAndPrintAmountPassengers() {
         view.printMessage(Integer.toString(manager.countAmountPassengers()));
     }
-    private void showWeightTrain(){
-        manager.WeightTrain();
+
+    private void showWeightTrain() {
+        view.printMessage(Integer.toString(manager.WeightTrain()));
     }
 
 }

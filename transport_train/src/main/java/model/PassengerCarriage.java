@@ -1,6 +1,18 @@
 package model;
 
 public class PassengerCarriage extends Carriage {
+    private final ComfortTypes comfortTypes;
+    private final int maxAmountPassengers;
+    private int carriageNumber;
+
+    public PassengerCarriage(int weight, int max_amount_passengers, ComfortTypes comfortType) {
+        super(weight);
+        this.comfortTypes = comfortType;
+        final int i;
+
+        maxAmountPassengers = max_amount_passengers;
+    }
+
     public ComfortTypes getComfortTypes() {
         return comfortTypes;
     }
@@ -15,18 +27,6 @@ public class PassengerCarriage extends Carriage {
 
     public void setCarriageNumber(int carriageNumber) {
         this.carriageNumber = carriageNumber;
-    }
-
-    private final ComfortTypes comfortTypes;
-    private final int maxAmountPassengers;
-    private int carriageNumber;
-    
-    public PassengerCarriage(int weight, int max_amount_passengers,ComfortTypes comfortType) {
-        super(weight);
-        this.comfortTypes =comfortType;
-        final int i;
-
-        maxAmountPassengers = max_amount_passengers;
     }
 
     @Override

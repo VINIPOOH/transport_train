@@ -1,7 +1,7 @@
 package model;
 
-public class Locomotive extends Carriage{
-    private final  int maxCarriageWeight;
+public class Locomotive extends Carriage {
+    private final int maxCarriageWeight;
 
     public Locomotive(int weight, int maxCarriageWeight) {
         super(weight);
