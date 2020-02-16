@@ -32,6 +32,6 @@ public class CarriageManager {
     }
 
     public int WeightTrain() {
-        return train.WeightTrain();
+        return train.getWeightTrain();
     }
 }

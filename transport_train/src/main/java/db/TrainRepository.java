@@ -5,9 +5,11 @@ import model.*;
 public class TrainRepository {
     public static Train findTrain() {
 
-        Carriage[] forFirstTrain = {new Locomotive(200, 2000)
-                , new PassengerCarriage(100, 30, ComfortTypes.BUSINESS_CLASS)};
-
-        return new Train(forFirstTrain, 1);
+        Carriage[] carriages = {new Locomotive(100, 3000)
+                , new PassengerCarriage(100, 1, ComfortTypes.BUSINESS_CLASS)
+                , new PassengerCarriage(100, 2, ComfortTypes.ECONOMY_CLASS)
+                , new PassengerCarriage(100, 3, ComfortTypes.BUSINESS_CLASS)
+        };
+        return new Train(carriages, 1);
     }
 }

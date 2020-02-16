@@ -15,13 +15,13 @@ import java.util.Scanner;
  * Created by student on 26.09.2017.
  */
 public class ConsoleController implements TextConstant {
+    static String REGULAR_TEMPLATES = "regular_templates";
     // Resource Bundle Installation's
     private static String MESSAGES_BUNDLE_NAME = "messages";
     public static final ResourceBundle messages =
             ResourceBundle.getBundle(
                     MESSAGES_BUNDLE_NAME,
                     new Locale("ua", "UA"));  // Ukrainian
-    static String REGULAR_TEMPLATES = "regular_templates";
     private CarriageManager manager;
     private ConsoleView view;
     //new Locale("en"));        // English

@@ -46,11 +46,11 @@ public class Train {
                 if (c2 instanceof PassengerCarriage) {
                     return (((PassengerCarriage) c1).getComfortTypes().compareTo(((PassengerCarriage) c2).getComfortTypes()));
                 } else {
-                    return 1;
+                    return -1;
                 }
             } else {
                 if (c2 instanceof PassengerCarriage) {
-                    return -1;
+                    return 1;
                 } else {
                     return 0;
                 }
@@ -68,7 +68,7 @@ public class Train {
         return toReturn;
     }
 
-    public int WeightTrain() {
+    public int getWeightTrain() {
         int toReturn = 0;
         for (Carriage carriage : carriages) {
             toReturn += carriage.getWeight();
