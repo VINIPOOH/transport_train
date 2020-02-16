@@ -3,6 +3,7 @@ package controller;
 
 import model.Carriage;
 import model.CarriageManager;
+import model.ComfortTypes;
 import model.Train;
 import view.ConsoleView;
 
@@ -14,16 +15,15 @@ import java.util.Scanner;
  * Created by student on 26.09.2017.
  */
 public class ConsoleController implements TextConstant {
-    private CarriageManager manager;
-    private ConsoleView view;
-
     // Resource Bundle Installation's
-    static String MESSAGES_BUNDLE_NAME = "messages";
+    private static String MESSAGES_BUNDLE_NAME = "messages";
     public static final ResourceBundle messages =
             ResourceBundle.getBundle(
                     MESSAGES_BUNDLE_NAME,
                     new Locale("ua", "UA"));  // Ukrainian
     static String REGULAR_TEMPLATES = "regular_templates";
+    private CarriageManager manager;
+    private ConsoleView view;
     //new Locale("en"));        // English
 
     public ConsoleController(CarriageManager manager, ConsoleView view) {
@@ -33,6 +33,8 @@ public class ConsoleController implements TextConstant {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+        view.printMessage(messages.getString(INFO_ABOUT_TICKETS));
+        showTicketsInfo();
         view.printMessage(messages.getString(TRAIN));
         showInfoAboutTrain();
         view.printMessage(messages.getString(SORT_CARRIAGE));
@@ -44,6 +46,12 @@ public class ConsoleController implements TextConstant {
         view.printMessage(messages.getString(FIND_CARRIAGE_WITH_MAX_AMOUNT_PASSENGERS_IN_RANGE));
         getAndHandleWagonsWithAmountPassengersInRange(scanner);
 
+    }
+
+    private void showTicketsInfo() {
+        for (ComfortTypes comfortTypes : ComfortTypes.values()) {
+            view.printMessage(comfortTypes.toString());
+        }
     }
 
     private void showInfoAboutTrain() {

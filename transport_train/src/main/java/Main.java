@@ -1,7 +1,5 @@
 import controller.ConsoleController;
-import model.Carriage;
 import model.CarriageManager;
-import model.ComfortTypes;
 import view.ConsoleView;
 
 public class Main {

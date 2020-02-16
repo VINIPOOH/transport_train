@@ -10,4 +10,6 @@ public interface TextConstant {
     String COUNT_AMOUNT_PASSENGERS = "input.count_amount_passengers";
     String COUNT_TRAIN_WEIGHT = "input.count_train_weight";
     String FIND_CARRIAGE_WITH_MAX_AMOUNT_PASSENGERS_IN_RANGE = "input.find_carriage_with_max_amount_passengers_in_range";
+
+    String INFO_ABOUT_TICKETS = "input.info_about_tickets";
 }
