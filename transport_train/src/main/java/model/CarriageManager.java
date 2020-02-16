@@ -2,6 +2,8 @@ package model;
 
 import db.TrainRepository;
 
+import java.util.ArrayList;
+
 public class CarriageManager {
     private Train train;
 
@@ -21,7 +23,7 @@ public class CarriageManager {
         train.sortTrainByComfortType();
     }
 
-    public Carriage[] getWagonsWithAmountPassengersInRange(int flor, int ceiling) {
+    public ArrayList<PassengerCarriage> getWagonsWithAmountPassengersInRange(int flor, int ceiling) {
         return train.getPassengerCarriageWithAmountPassengerInRange(flor, ceiling);
     }
 

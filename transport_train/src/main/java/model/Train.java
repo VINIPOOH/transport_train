@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,7 +29,7 @@ public class Train {
         this.carriages = carriages;
     }
 
-    public PassengerCarriage[] getPassengerCarriageWithAmountPassengerInRange(int flor, int ceiling) {
+    public ArrayList<PassengerCarriage> getPassengerCarriageWithAmountPassengerInRange(int flor, int ceiling) {
         ArrayList<PassengerCarriage> toReturn = new ArrayList<>();
         for (Carriage carriage : carriages) {
             if (carriage instanceof PassengerCarriage
@@ -37,8 +38,7 @@ public class Train {
                 toReturn.add((PassengerCarriage) carriage);
             }
         }
-
-        return (PassengerCarriage[]) toReturn.toArray();
+        return toReturn;
     }
 
     public void sortTrainByComfortType() {
