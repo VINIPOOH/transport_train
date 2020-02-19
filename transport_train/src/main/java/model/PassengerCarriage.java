@@ -29,12 +29,13 @@ public class PassengerCarriage extends Carriage {
         this.carriageNumber = carriageNumber;
     }
 
-    @Override
-    public String toString() {
+    public String getStringRepresentation() {
         return "PassengerCarriage{" +
                 "COMFORT_TYPE=" + comfortTypes +
                 ", MAX_AMOUNT_PASSENGERS=" + maxAmountPassengers +
                 ", CarriageNumber=" + carriageNumber +
                 '}';
     }
+
+
 }

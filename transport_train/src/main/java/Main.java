@@ -1,14 +1,14 @@
 import controller.ConsoleController;
-import model.CarriageManager;
+import model.Train;
 import view.ConsoleView;
 
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        CarriageManager manager = new CarriageManager();
+        Train train = new Train(1);
         ConsoleView view = new ConsoleView();
-        ConsoleController controller = new ConsoleController(manager, view);
+        ConsoleController controller = new ConsoleController(train, view);
         controller.start();
 
     }

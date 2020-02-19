@@ -1,5 +1,7 @@
 package model;
 
+import db.TrainRepository;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,6 +11,11 @@ public class Train {
 
     public Train(Carriage[] carriages, int trainNumber) {
         this.carriages = carriages;
+        this.trainNumber = trainNumber;
+    }
+
+    public Train(int trainNumber) {
+        this.carriages = TrainRepository.getCarriages();
         this.trainNumber = trainNumber;
     }
 

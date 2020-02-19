@@ -2,7 +2,6 @@ package controller;
 
 
 import model.Carriage;
-import model.CarriageManager;
 import model.ComfortTypes;
 import model.Train;
 import view.ConsoleView;
@@ -12,25 +11,39 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
- * Created by student on 26.09.2017.
+ * controller class
+ * @author ivan
  */
 public class ConsoleController implements TextConstant {
-    static String REGULAR_TEMPLATES = "regular_templates";
-    // Resource Bundle Installation's
+    /**
+     * name properties file
+     */
     private static String MESSAGES_BUNDLE_NAME = "messages";
     public static final ResourceBundle messages =
             ResourceBundle.getBundle(
                     MESSAGES_BUNDLE_NAME,
                     new Locale("ua", "UA"));  // Ukrainian
-    private CarriageManager manager;
+    /**
+     * train with which we working now
+     * it`s model main class
+     */
+    private Train train;
     private ConsoleView view;
     //new Locale("en"));        // English
 
-    public ConsoleController(CarriageManager manager, ConsoleView view) {
-        this.manager = manager;
+    /**
+     * constructor
+     * @param train model class
+     * @param view view class
+     */
+    public ConsoleController(Train train, ConsoleView view) {
+        this.train = train;
         this.view = view;
     }
 
+    /**
+     * main controller life line
+     */
     public void start() {
         Scanner scanner = new Scanner(System.in);
         view.printMessage(messages.getString(INFO_ABOUT_TICKETS));
@@ -55,20 +68,20 @@ public class ConsoleController implements TextConstant {
     }
 
     private void showInfoAboutTrain() {
-        Train train = manager.getTrain();
+        Train train = this.train;
         StringBuilder trainInfoToPrint = new StringBuilder();
 
         trainInfoToPrint.append(train.getTrainNumber());
         trainInfoToPrint.append(" ");
         for (Carriage carriage : train.getCarriages()) {
-            trainInfoToPrint.append(carriage.toString());
+            trainInfoToPrint.append(carriage.getStringRepresentation());
             trainInfoToPrint.append(" ");
         }
         view.printMessage(trainInfoToPrint.toString());
     }
 
     private void sortAndShowTrain() {
-        manager.sortTrainByComfortType();
+        train.sortTrainByComfortType();
         showInfoAboutTrain();
     }
 
@@ -77,7 +90,10 @@ public class ConsoleController implements TextConstant {
         int flor = getNumberFromUser(scanner);
         view.printMessage(messages.getString(INPUT_CEILING_PASSENGER_RANGE));
         int ceiling = getNumberFromUser(scanner);
-        view.printMessage(manager.getWagonsWithAmountPassengersInRange(flor, ceiling).toString());
+        for (Carriage carriage : train.getPassengerCarriageWithAmountPassengerInRange(flor, ceiling)) {
+            view.printMessage(carriage.getStringRepresentation());
+        }
+
     }
 
     private int getNumberFromUser(Scanner scanner) {
@@ -94,11 +110,11 @@ public class ConsoleController implements TextConstant {
     }
 
     private void countAndPrintAmountPassengers() {
-        view.printMessage(Integer.toString(manager.countAmountPassengers()));
+        view.printMessage(Integer.toString(train.countAmountPassengers()));
     }
 
     private void showWeightTrain() {
-        view.printMessage(Integer.toString(manager.WeightTrain()));
+        view.printMessage(Integer.toString(train.getWeightTrain()));
     }
 
 }

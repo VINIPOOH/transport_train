@@ -8,8 +8,8 @@ public class Locomotive extends Carriage {
         this.maxCarriageWeight = maxCarriageWeight;
     }
 
-    @Override
-    public String toString() {
+
+    public String getStringRepresentation() {
         return "Locomotive{" +
                 "maxCarriageWeight=" + maxCarriageWeight +
                 '}';

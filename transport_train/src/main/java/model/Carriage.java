@@ -11,10 +11,10 @@ public class Carriage {
         return weight;
     }
 
-    @Override
-    public String toString() {
+    public String getStringRepresentation() {
         return "Carriage{" +
                 "WEIGHT=" + weight +
                 '}';
     }
+
 }
